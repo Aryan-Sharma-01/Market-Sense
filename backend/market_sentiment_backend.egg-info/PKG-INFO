@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: market_sentiment_backend
+Version: 0.1.0
+Summary: Flask backend for visual sentiment analysis and market prediction
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: flask>=3.0
+Requires-Dist: flask-cors>=4.0
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: torch>=2.4
+Requires-Dist: torchvision>=0.19
+Requires-Dist: transformers>=4.40
+Requires-Dist: pillow>=10.0
+Requires-Dist: opencv-python>=4.10
+Requires-Dist: easyocr>=1.7
+Requires-Dist: pytesseract>=0.3.10
+Requires-Dist: yfinance>=0.2.0
+Requires-Dist: pandas>=2.0
+Requires-Dist: numpy>=1.24
+Requires-Dist: scikit-learn>=1.3
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: requests>=2.31
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3; extra == "dev"
+Requires-Dist: black>=24.8; extra == "dev"
+Requires-Dist: ruff>=0.6; extra == "dev"
+
+# Backend Service
+
+Flask-based API for visual sentiment analysis and market prediction.
+
+## Features
+
+- Image feature extraction using ResNet50
+- OCR text extraction from images
+- Sentiment analysis using RoBERTa
+- Market price prediction based on sentiment
+- SQLite database with seeded demo data
+
+## Setup
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]
+flask --app app.main run --debug
+```
+
+## API Endpoints
+
+- `GET /healthz` - Health check
+- `GET /api/dashboard` - Dashboard statistics
+- `GET /api/assets` - List all tracked assets
+- `POST /api/analyze` - Analyze image for sentiment (multipart form: image, symbol, source_url)
+- `GET /api/assets/<id>/analyses` - Get sentiment analyses for an asset
+- `GET /api/assets/<id>/predictions` - Get predictions for an asset
+- `POST /api/predict` - Create a market prediction
+
+
